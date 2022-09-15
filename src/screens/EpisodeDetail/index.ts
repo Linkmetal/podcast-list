@@ -1,0 +1,1 @@
+export { EpisodeDetail } from "./EpisodeDetail";
