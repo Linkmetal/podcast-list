@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 48px;
+}
+
+.podcastList {
+  display: grid;
+  grid-column-gap: 48px;
+  grid-row-gap: 180px;
+  grid-template-columns: 1fr;
+  align-self: center;
+}
+
+@media (min-width: 680px) {
+  .podcastList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .podcastList {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1400px) {
+  .podcastList {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

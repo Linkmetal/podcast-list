@@ -1,0 +1,12 @@
+.header {
+  height: 5vh;
+  width: 100vw;
+  border-bottom: solid thin #efefef;
+  padding-left: 5px;
+  padding-bottom: 15px;
+}
+
+.title {
+  text-decoration: none;
+  color: #4078a5;
+}
