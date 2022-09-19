@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: stretch;
+  justify-content: flex-start;
+  padding: 16px;
+  max-width: 25vw;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.imageContainer {
+  align-self: center;
+}
+
+.nameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 8px;
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

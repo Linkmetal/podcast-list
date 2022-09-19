@@ -5,10 +5,6 @@ import { useFetchPodcasts } from "hooks/useFetchPodcasts";
 
 export const PodcastList = () => {
   const { podcasts } = useFetchPodcasts();
-  console.log(
-    "🚀 ~ file: PodcastList.tsx ~ line 8 ~ PodcastList ~ podcasts",
-    podcasts
-  );
 
   return (
     <div className={styles.container}>
@@ -17,7 +13,10 @@ export const PodcastList = () => {
       <div className={styles.listContainer}>
         <div className={styles.podcastList}>
           {podcasts?.map((podcast) => (
-            <PodcastCard podcast={podcast} />
+            <PodcastCard
+              key={podcast.id.attributes["im:id"]}
+              podcast={podcast}
+            />
           ))}
         </div>
       </div>
