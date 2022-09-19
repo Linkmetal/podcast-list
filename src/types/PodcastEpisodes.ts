@@ -21,7 +21,7 @@ export interface PodcastEpisode {
   artworkUrl160: string;
   previewUrl: string;
   shortDescription: string;
-  genres: Genre[];
+  genres: Genre[] | string[];
   episodeGuid: string;
   kind: string;
   wrapperType: string;
