@@ -17,7 +17,10 @@ export const PodcastList = () => {
       <div className={styles.listContainer}>
         <div className={styles.podcastList}>
           {podcasts?.map((podcast) => (
-            <PodcastCard podcast={podcast} />
+            <PodcastCard
+              key={podcast.id.attributes["im:id"]}
+              podcast={podcast}
+            />
           ))}
         </div>
       </div>

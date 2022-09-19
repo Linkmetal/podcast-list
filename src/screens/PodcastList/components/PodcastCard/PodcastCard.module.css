@@ -14,7 +14,7 @@
   height: 180px;
   width: 180px;
   border-radius: 50%;
-  top: 0;
+  top: -33%;
   left: 60px;
 }
 
@@ -25,10 +25,10 @@
 }
 
 .card {
-  height: 180px;
+  display: flex;
+  min-height: 180px;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  display: flex;
   flex-direction: column;
   justify-content: flex-end;
   position: relative;
@@ -38,15 +38,17 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 5px;
   align-items: center;
   margin-left: 24px;
   margin-right: 24px;
-  height: 40%;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  margin-top: 120px;
 }
 
-.textContainer > span {
+.textContainer > * {
   text-align: center;
   color: black;
 }

@@ -17,6 +17,8 @@
   grid-row-gap: 180px;
   grid-template-columns: 1fr;
   align-self: center;
+  justify-self: center;
+  align-items: baseline;
 }
 
 @media (min-width: 680px) {
