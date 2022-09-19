@@ -1,6 +1,7 @@
 import { UseQueryOptions, useQuery } from "@tanstack/react-query";
 
 import { AxiosError } from "axios";
+import { Podcast } from "types/Podcast";
 import { PodcastRepository } from "network/repositories/PodcastRepository";
 
 export type FetchPodcastsParams = {
@@ -9,7 +10,7 @@ export type FetchPodcastsParams = {
 
 export namespace FetchPodcasts {
   export type Params = FetchPodcastsParams;
-  export type Response = any[];
+  export type Response = Podcast[];
   export type Error = AxiosError<string>;
   export type Options = UseQueryOptions<Response, Error>;
 }
