@@ -1,8 +1,18 @@
-import { render, screen, waitFor } from "tests/app-test-utils";
+import {
+  PodcastEpisodeFixture,
+  PodcastEpisodeListFixture,
+} from "tests/fixtures/PodcastEpisode";
+import { fireEvent, render, screen, waitFor } from "tests/app-test-utils";
 
 import { EpisodesList } from "./EpisodesList";
-import { PodcastEpisodeListFixture } from "tests/fixtures/PodcastEpisode";
 import { PodcastFixture } from "tests/fixtures/Podcast";
+
+const mockNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...(jest.requireActual("react-router-dom") as any),
+  useNavigate: () => mockNavigate,
+}));
 
 describe("EpisodesList", () => {
   it("renders the podcast detail properly", () => {
@@ -11,13 +21,12 @@ describe("EpisodesList", () => {
     expect(screen.getByText("Debut")).toBeInTheDocument();
   });
 
-  it("navigates to podcast detail on click", async () => {
+  it("navigates to episode detail on click", async () => {
     render(<EpisodesList podcastEpisodes={PodcastEpisodeListFixture} />);
-    const podcast = screen.getAllByRole("link")[0];
+    fireEvent.click(screen.getByText(PodcastEpisodeFixture.trackName));
 
     await waitFor(() => {
-      expect(podcast).toHaveAttribute(
-        "href",
+      expect(mockNavigate).toHaveBeenCalledWith(
         `/podcast/${PodcastFixture.id.attributes["im:id"]}/episode/${PodcastEpisodeListFixture[0].trackId}`
       );
     });

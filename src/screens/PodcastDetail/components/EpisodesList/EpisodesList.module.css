@@ -46,16 +46,25 @@ tr:nth-child(n + 2) {
   border-bottom: solid thin #e0e0e0;
 }
 
-td > a {
+td {
+  padding: 8px;
+}
+
+td:nth-child(1) {
   text-decoration: none;
   text-overflow: ellipsis;
   color: #2975bb;
+  cursor: pointer;
 }
 
-td > a:hover {
+td:nth-child(1):hover {
   text-decoration: underline;
 }
 
 tr:nth-child(2n) {
   background-color: #fafafafa;
+}
+
+td:nth-child(3) {
+  text-align: right;
 }

@@ -2,7 +2,6 @@ import { PodcastFixture, PodcastListFixture } from "tests/fixtures/Podcast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "tests/app-test-utils";
 
-import { MemoryRouter } from "react-router-dom";
 import { PodcastDetail } from "./PodcastDetail";
 import { PodcastEpisodeListFixture } from "tests/fixtures/PodcastEpisode";
 import { PodcastRepository } from "network/repositories/PodcastRepository";
@@ -30,11 +29,10 @@ describe("PodcastDetail", () => {
     const route = `/podcasts/${PodcastFixture.id.attributes["im:id"]}`;
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <QueryClientProvider client={queryClient}>
-          <PodcastDetail />
-        </QueryClientProvider>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <PodcastDetail />
+      </QueryClientProvider>,
+      route
     );
 
     expect(await screen.findByText("Debut")).toBeInTheDocument();

@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen } from "tests/app-test-utils";
 
 import { EpisodeDetail } from "./EpisodeDetail";
-import { MemoryRouter } from "react-router-dom";
 import { PodcastRepository } from "network/repositories/PodcastRepository";
 
 describe("PodcastDetail", () => {
@@ -33,11 +32,10 @@ describe("PodcastDetail", () => {
     const route = `/podcasts/${PodcastFixture.id.attributes["im:id"]}/episode/${PodcastEpisodeFixture.trackId}`;
 
     render(
-      <MemoryRouter initialEntries={[route]}>
-        <QueryClientProvider client={queryClient}>
-          <EpisodeDetail />
-        </QueryClientProvider>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <EpisodeDetail />
+      </QueryClientProvider>,
+      route
     );
 
     const [result] = await screen.findAllByText("Björk: Sonic Symbolism");
