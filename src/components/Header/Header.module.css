@@ -1,6 +1,6 @@
 .header {
   height: 5vh;
-  width: 100vw;
+  width: calc(100vw - 15px);
   border-bottom: solid thin #efefef;
   padding-left: 15px;
   padding-bottom: 15px;

@@ -4,7 +4,10 @@ import styles from "./PodcastList.module.css";
 import { useFetchPodcasts } from "hooks/useFetchPodcasts";
 
 export const PodcastList = () => {
-  const { podcasts } = useFetchPodcasts();
+  const { podcasts } = useFetchPodcasts(
+    {},
+    { onError: (err) => console.error(err) }
+  );
 
   return (
     <div className={styles.container}>
