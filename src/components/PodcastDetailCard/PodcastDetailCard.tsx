@@ -2,10 +2,11 @@ import { Podcast } from "types/Podcast";
 import styles from "./PodcastDetailCard.module.css";
 
 type PodcastDetailCardProps = {
-  podcast: Podcast;
+  podcast?: Podcast;
 };
 
 export const PodcastDetailCard = ({ podcast }: PodcastDetailCardProps) => {
+  if (!podcast) return <div>"TODO: Spinner"</div>;
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>

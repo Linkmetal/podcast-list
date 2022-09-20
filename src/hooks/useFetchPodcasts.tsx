@@ -15,22 +15,25 @@ export namespace FetchPodcasts {
   export type Options = UseQueryOptions<Response, Error>;
 }
 
-const createKey = (params: FetchPodcasts.Params = {}) => [
-  "fetch-podcasts",
-  JSON.stringify(params),
-];
+const createKey = (params: FetchPodcasts.Params) => ["fetch-podcasts"];
 
 const queryFetcher = () => async () => {
   return await PodcastRepository.fetch();
 };
 
 export const useFetchPodcasts = (
-  params?: FetchPodcasts.Params,
+  params: FetchPodcasts.Params,
   options?: FetchPodcasts.Options
 ) => {
   const { data, ...rest } = useQuery<
     FetchPodcasts.Response,
     FetchPodcasts.Error
   >(createKey(params), queryFetcher(), options);
+
+  if (params && params.searchQuery !== undefined) {
+    data?.filter((podcast) =>
+      podcast["im:artist"].label.includes(params?.searchQuery || "")
+    );
+  }
   return { podcasts: data, ...rest };
 };
