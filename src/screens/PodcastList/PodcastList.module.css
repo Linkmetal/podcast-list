@@ -11,6 +11,26 @@
   padding: 48px;
 }
 
+.searchFieldContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 24px;
+}
+
+.counter {
+  display: flex;
+}
+
+.counter > h2 {
+  margin: 0;
+  margin-right: 12px;
+  padding: 2px 12px;
+  background-color: #2975bb;
+  color: white;
+  border-radius: 10px;
+}
+
 .podcastList {
   display: grid;
   grid-column-gap: 48px;

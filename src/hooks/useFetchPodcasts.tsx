@@ -15,7 +15,7 @@ export namespace FetchPodcasts {
   export type Options = UseQueryOptions<Response, Error>;
 }
 
-const createKey = (params: FetchPodcasts.Params) => ["fetch-podcasts"];
+const createKey = () => ["fetch-podcasts"];
 
 const queryFetcher = () => async () => {
   return await PodcastRepository.fetch();
@@ -28,12 +28,24 @@ export const useFetchPodcasts = (
   const { data, ...rest } = useQuery<
     FetchPodcasts.Response,
     FetchPodcasts.Error
-  >(createKey(params), queryFetcher(), options);
+  >(createKey(), queryFetcher(), options);
 
   if (params && params.searchQuery !== undefined) {
-    data?.filter((podcast) =>
-      podcast["im:artist"].label.includes(params?.searchQuery || "")
+    const filter = (podcast: Podcast, key: "im:name" | "im:artist") => {
+      return podcast[key].label
+        .toLowerCase()
+        .includes(params?.searchQuery?.toLocaleLowerCase() || "");
+    };
+
+    const artistFilter = (podcast: Podcast) => filter(podcast, "im:artist");
+
+    const nameFilter = (podcast: Podcast) => filter(podcast, "im:name");
+
+    const result = data?.filter(
+      (podcast) => artistFilter(podcast) || nameFilter(podcast)
     );
+
+    return { podcasts: result, ...rest };
   }
   return { podcasts: data, ...rest };
 };
