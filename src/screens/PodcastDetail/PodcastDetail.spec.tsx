@@ -1,6 +1,8 @@
+import { PodcastFixture, PodcastListFixture } from "tests/fixtures/Podcast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 
+import { MemoryRouter } from "react-router-dom";
 import { PodcastDetail } from "./PodcastDetail";
 import { PodcastEpisodeListFixture } from "tests/fixtures/PodcastEpisode";
 import { PodcastRepository } from "network/repositories/PodcastRepository";
@@ -18,12 +20,21 @@ describe("PodcastDetail", () => {
   });
   it("renders the podcast detail properly", async () => {
     jest
+      .spyOn(PodcastRepository, "fetch")
+      .mockResolvedValue(PodcastListFixture);
+
+    jest
       .spyOn(PodcastRepository, "episodes")
-      .mockImplementation(() => Promise.resolve(PodcastEpisodeListFixture));
+      .mockResolvedValue(PodcastEpisodeListFixture);
+
+    const route = `/podcasts/${PodcastFixture.id.attributes["im:id"]}`;
+
     render(
-      <QueryClientProvider client={queryClient}>
-        <PodcastDetail />
-      </QueryClientProvider>
+      <MemoryRouter initialEntries={[route]}>
+        <QueryClientProvider client={queryClient}>
+          <PodcastDetail />
+        </QueryClientProvider>
+      </MemoryRouter>
     );
 
     expect(await screen.findByText("Debut")).toBeInTheDocument();

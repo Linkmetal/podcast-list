@@ -4,13 +4,16 @@ import { PodcastDetailCard } from "../../components/PodcastDetailCard";
 import styles from "./PodcastDetail.module.css";
 import { useFetchPodcastById } from "hooks/useFetchPodcastById";
 import { useFetchPodcastEpisodes } from "hooks/useFetchPodcastEpisodes";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const PodcastDetail = () => {
-  const { id } = useParams();
+  const { pathname } = useLocation();
+
+  const id = pathname.split("/")[2];
+
   const { podcastEpisodes } = useFetchPodcastEpisodes(
     { id },
-    { onError: (err) => console.error(err) }
+    { enabled: !!id, onError: (err) => console.error(err) }
   );
 
   const { podcast } = useFetchPodcastById(
