@@ -5,8 +5,9 @@ import { PodcastEpisode } from "types/PodcastEpisodes";
 
 export const PodcastRepository = {
   fetch() {
+    // NOTE: limit is 101 because sometimes it returns 99 elements instead of 100
     return ApiClient.get<undefined, Podcast[]>(
-      "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json",
+      "https://itunes.apple.com/us/rss/toppodcasts/limit=101/genre=1310/json",
       {
         transformResponse: [
           (data) => {

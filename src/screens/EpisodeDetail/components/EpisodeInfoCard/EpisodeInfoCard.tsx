@@ -14,7 +14,7 @@ export const EpisodeInfoCard = ({ episode }: EpisodeInfoCardProps) => {
 
       <hr />
       <div className={styles.descriptionContainer}>
-        <i>{episode.description}</i>
+        <span dangerouslySetInnerHTML={{ __html: episode.description }} />
       </div>
       <hr />
       <div className={styles.playerContainer}>
