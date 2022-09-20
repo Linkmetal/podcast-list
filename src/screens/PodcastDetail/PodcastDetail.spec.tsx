@@ -1,6 +1,6 @@
 import { PodcastFixture, PodcastListFixture } from "tests/fixtures/Podcast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import { MemoryRouter } from "react-router-dom";
 import { PodcastDetail } from "./PodcastDetail";
