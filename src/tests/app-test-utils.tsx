@@ -7,6 +7,7 @@ import {
 } from "@testing-library/react";
 
 import { LoaderProvider } from "contexts/LoaderContext/LoaderContext";
+import { MemoryRouter } from "react-router-dom";
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,11 +24,14 @@ export const queryClient = new QueryClient({
 
 export const render = (
   component: ReactElement,
+  route?: string,
   { ...renderOptions }: any = {}
 ) => {
-  const Wrapper = ({ children }: { children: ReactNode }) => (
+  const Wrapper = ({ children }: { children: ReactNode; route: string }) => (
     <QueryClientProvider client={queryClient}>
-      <LoaderProvider>{children}</LoaderProvider>
+      <MemoryRouter initialEntries={[route || "/"]}>
+        <LoaderProvider>{children}</LoaderProvider>
+      </MemoryRouter>
     </QueryClientProvider>
   );
 
