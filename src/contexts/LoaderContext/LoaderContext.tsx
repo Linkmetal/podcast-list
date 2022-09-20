@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 
 import { Loader } from "components/Loader";
 
@@ -15,10 +15,6 @@ export const LoaderProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(isVisible);
-  }, [isVisible]);
 
   return (
     <LoaderContext.Provider value={{ setIsVisible, isVisible }}>

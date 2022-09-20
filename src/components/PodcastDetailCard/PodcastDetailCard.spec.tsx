@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "tests/app-test-utils";
 
 import { PodcastDetailCard } from "./PodcastDetailCard";
 import { PodcastFixture } from "tests/fixtures/Podcast";

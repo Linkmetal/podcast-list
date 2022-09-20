@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "tests/app-test-utils";
 
 import { TextInput } from "./TextInput";
 
