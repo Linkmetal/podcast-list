@@ -20,8 +20,8 @@ const createKey = (params: FetchPodcastEpisodes.Params = {}) => [
   JSON.stringify(params),
 ];
 
-const queryFetcher = (params: FetchPodcastEpisodes.Params) => async () => {
-  return await PodcastRepository.episodes(params);
+const queryFetcher = (params: FetchPodcastEpisodes.Params) => () => {
+  return PodcastRepository.episodes(params);
 };
 
 export const useFetchPodcastEpisodes = (

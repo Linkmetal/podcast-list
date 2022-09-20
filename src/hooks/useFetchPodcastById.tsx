@@ -17,8 +17,8 @@ export namespace FetchPodcastsById {
 
 const createKey = () => ["fetch-podcasts"];
 
-const queryFetcher = () => async () => {
-  return await PodcastRepository.fetch();
+const queryFetcher = () => () => {
+  return PodcastRepository.fetch();
 };
 
 export const useFetchPodcastById = (

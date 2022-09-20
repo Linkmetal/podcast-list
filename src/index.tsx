@@ -2,6 +2,7 @@ import "./index.css";
 
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { LoaderProvider } from "contexts/LoaderContext/LoaderContext";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { QueryClient } from "@tanstack/react-query";
 import React from "react";
@@ -32,7 +33,9 @@ root.render(
       persistOptions={{ persister: localStoragePersistor }}
     >
       <BrowserRouter>
-        <App />
+        <LoaderProvider>
+          <App />
+        </LoaderProvider>
       </BrowserRouter>
     </PersistQueryClientProvider>
   </React.StrictMode>

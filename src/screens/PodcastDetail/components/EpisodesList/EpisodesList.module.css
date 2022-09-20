@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 16px;
-  width: 55vw;
+  width: 65vw;
 }
 
 .episodeCount {
@@ -28,4 +27,35 @@
 
 .titleColumn {
   width: 70%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+tr {
+  height: 48px;
+}
+
+tr:nth-child(1) {
+  border-bottom: solid thin #e0e0e0;
+}
+
+tr:nth-child(n + 2) {
+  border-bottom: solid thin #e0e0e0;
+}
+
+td > a {
+  text-decoration: none;
+  text-overflow: ellipsis;
+  color: #2975bb;
+}
+
+td > a:hover {
+  text-decoration: underline;
+}
+
+tr:nth-child(2n) {
+  background-color: #fafafafa;
 }
