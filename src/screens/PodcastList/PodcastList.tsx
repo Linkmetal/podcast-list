@@ -1,23 +1,34 @@
+import { useEffect, useState } from "react";
+
 import { Header } from "components/Header";
 import { PodcastCard } from "./components/PodcastCard";
 import { TextInput } from "components/TextInput";
 import styles from "./PodcastList.module.css";
 import { useFetchPodcasts } from "hooks/useFetchPodcasts";
-import { useState } from "react";
+import { useLoaderContext } from "contexts/LoaderContext/LoaderContext";
 
 export const PodcastList = () => {
+  const { setIsVisible } = useLoaderContext();
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const { podcasts } = useFetchPodcasts(
+  const { podcasts, status } = useFetchPodcasts(
     { searchQuery },
-    { onError: (err) => console.error(err) }
+    {
+      onError: (err) => {
+        console.error(err);
+      },
+    }
   );
+
+  useEffect(() => {
+    setIsVisible(status === "loading");
+  }, [status, setIsVisible]);
 
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.searchFieldContainer}>
         <div className={styles.counter}>
-          <h2>{podcasts?.length}</h2>
+          <h2>{podcasts?.length || "0"}</h2>
         </div>
 
         <TextInput

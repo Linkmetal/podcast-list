@@ -1,6 +1,6 @@
 import { PodcastFixture, PodcastListFixture } from "tests/fixtures/Podcast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "tests/app-test-utils";
 
 import { PodcastList } from "./PodcastList";
 import { PodcastRepository } from "network/repositories/PodcastRepository";

@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "tests/app-test-utils";
 
 import { PodcastCard } from "./PodcastCard";
 import { PodcastFixture } from "tests/fixtures/Podcast";

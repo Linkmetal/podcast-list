@@ -18,9 +18,9 @@ export namespace FetchPodcastEpisodesById {
 
 const createKey = () => ["fetch-podcast-episodes"];
 
-const queryFetcher = (params: FetchPodcastEpisodesById.Params) => async () => {
+const queryFetcher = (params: FetchPodcastEpisodesById.Params) => () => {
   if (!params.podcastId) return [];
-  return await PodcastRepository.episodes({ id: params.podcastId });
+  return PodcastRepository.episodes({ id: params.podcastId });
 };
 
 export const useFetchPodcastEpisodesById = (

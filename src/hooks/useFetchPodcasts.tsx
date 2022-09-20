@@ -17,8 +17,8 @@ export namespace FetchPodcasts {
 
 const createKey = () => ["fetch-podcasts"];
 
-const queryFetcher = () => async () => {
-  return await PodcastRepository.fetch();
+const queryFetcher = () => () => {
+  return PodcastRepository.fetch();
 };
 
 export const useFetchPodcasts = (
@@ -30,7 +30,7 @@ export const useFetchPodcasts = (
     FetchPodcasts.Error
   >(createKey(), queryFetcher(), options);
 
-  if (params && params.searchQuery !== undefined) {
+  if (data && params && params.searchQuery !== undefined) {
     const filter = (podcast: Podcast, key: "im:name" | "im:artist") => {
       return podcast[key].label
         .toLowerCase()

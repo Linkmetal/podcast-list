@@ -1,4 +1,6 @@
+import { Loader } from "components/Loader";
 import { Podcast } from "types/Podcast";
+import { Separator } from "components/Separator";
 import styles from "./PodcastDetailCard.module.css";
 
 type PodcastDetailCardProps = {
@@ -6,7 +8,8 @@ type PodcastDetailCardProps = {
 };
 
 export const PodcastDetailCard = ({ podcast }: PodcastDetailCardProps) => {
-  if (!podcast) return <div>"TODO: Spinner"</div>;
+  if (!podcast) return <Loader isVisible />;
+
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
@@ -15,12 +18,12 @@ export const PodcastDetailCard = ({ podcast }: PodcastDetailCardProps) => {
           alt={`${podcast["im:artist"].label} cover`}
         />
       </div>
-      <hr />
+      <Separator />
       <div className={styles.nameContainer}>
         <strong>{podcast["im:name"].label}</strong>
         <i>by {podcast["im:artist"].label}</i>
       </div>
-      <hr />
+      <Separator />
       <div className={styles.descriptionContainer}>
         <p>
           <strong>Description:</strong>
