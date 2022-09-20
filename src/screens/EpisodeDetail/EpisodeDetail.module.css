@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.detailContainer {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+}
