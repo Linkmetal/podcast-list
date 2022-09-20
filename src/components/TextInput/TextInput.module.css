@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+
+input {
+  height: 40px;
+  width: 250px;
+  border-radius: 5px;
+  border: solid thin #aaaaaaaa;
+  padding: 0 12px;
+}

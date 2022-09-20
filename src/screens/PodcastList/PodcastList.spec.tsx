@@ -1,8 +1,8 @@
+import { PodcastFixture, PodcastListFixture } from "tests/fixtures/Podcast";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import { PodcastList } from "./PodcastList";
-import { PodcastListFixture } from "tests/fixtures/Podcast";
 import { PodcastRepository } from "network/repositories/PodcastRepository";
 
 describe("PodcastList", () => {
@@ -17,10 +17,13 @@ describe("PodcastList", () => {
     },
   });
 
-  it("renders the podcast list properly", async () => {
+  beforeEach(() => {
     jest
       .spyOn(PodcastRepository, "fetch")
-      .mockImplementation(() => Promise.resolve(PodcastListFixture));
+      .mockResolvedValue(PodcastListFixture);
+  });
+
+  it("renders the podcast list properly", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <PodcastList />
@@ -29,6 +32,38 @@ describe("PodcastList", () => {
 
     expect(
       await screen.findByText("Björk: Sonic Symbolism")
+    ).toBeInTheDocument();
+  });
+
+  it("can filter by name", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <PodcastList />
+      </QueryClientProvider>
+    );
+
+    fireEvent.input(screen.getByPlaceholderText("Filter podcasts..."), {
+      target: { value: "bj" },
+    });
+
+    expect(
+      await screen.findByText(PodcastFixture["im:name"].label)
+    ).toBeInTheDocument();
+  });
+
+  it("can filter by artist", async () => {
+    render(
+      <QueryClientProvider client={queryClient}>
+        <PodcastList />
+      </QueryClientProvider>
+    );
+
+    fireEvent.input(screen.getByPlaceholderText("Filter podcasts..."), {
+      target: { value: "mail" },
+    });
+
+    expect(
+      await screen.findByText(PodcastFixture["im:artist"].label)
     ).toBeInTheDocument();
   });
 });
