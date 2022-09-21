@@ -7,7 +7,7 @@
 }
 
 .hidden {
-  display: none;
+  visibility: hidden;
 }
 
 .loader {
@@ -28,9 +28,6 @@
   left: 0;
   top: 0;
   animation: animloader 2s linear infinite;
-}
-.loader::after {
-  animation-delay: 0.5s;
 }
 
 @keyframes animloader {
