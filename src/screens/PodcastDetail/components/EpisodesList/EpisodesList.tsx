@@ -1,29 +1,23 @@
+import { Link } from "react-router-dom";
 import { PodcastEpisode } from "types/PodcastEpisodes";
 import styles from "./EpisodesList.module.css";
-import { useNavigate } from "react-router-dom";
 
 type EpisodesListProps = {
   podcastEpisodes?: PodcastEpisode[];
 };
 
 export const EpisodesList = ({ podcastEpisodes = [] }: EpisodesListProps) => {
-  const navigate = useNavigate();
-
   const millisecondsToDurationInMinutes = (millis: number) => {
     const millisInSeconds = Math.floor(millis / 1000);
     const minutes = Math.floor(millisInSeconds / 60);
     const seconds = Math.floor(millisInSeconds % 60);
-    const parsedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    const parsedSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    const parsedMinutes = minutes.toString().padStart(2, "0");
+    const parsedSeconds = seconds.toString().padStart(2, "0");
 
     if (isNaN(seconds) || isNaN(minutes)) {
       return "--:--";
     }
     return `${parsedMinutes}:${parsedSeconds}`;
-  };
-
-  const goToEpisodeDetail = (podcastId: string, episodeId: string) => {
-    navigate(`/podcast/${podcastId}/episode/${episodeId}`);
   };
 
   return (
@@ -43,15 +37,12 @@ export const EpisodesList = ({ podcastEpisodes = [] }: EpisodesListProps) => {
           <tbody>
             {podcastEpisodes.map((episode) => (
               <tr key={episode.trackId.toString()}>
-                <td
-                  onClick={() =>
-                    goToEpisodeDetail(
-                      episode.collectionId.toString(),
-                      episode.trackId.toString()
-                    )
-                  }
-                >
-                  {episode.trackName}
+                <td>
+                  <Link
+                    to={`/podcast/${episode.collectionId}/episode/${episode.trackId}`}
+                  >
+                    {episode.trackName}
+                  </Link>
                 </td>
                 <td>{new Date(episode.releaseDate).toLocaleDateString()}</td>
                 <td>

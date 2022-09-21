@@ -50,7 +50,7 @@ td {
   padding: 8px;
 }
 
-td:nth-child(1) {
+td:nth-child(1) > a {
   text-decoration: none;
   text-overflow: ellipsis;
   color: #2975bb;
