@@ -1,6 +1,7 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 
 import { Loader } from "components/Loader";
+import { useLocation } from "react-router-dom";
 
 type LoaderContextProps = {
   setIsVisible: (isVisible: boolean) => void;
@@ -15,10 +16,20 @@ export const LoaderProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [isNavigating, setIsNavigating] = React.useState<boolean>(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsNavigating(true);
+    setTimeout(() => {
+      setIsNavigating(false);
+    }, 500);
+  }, [location.pathname]);
 
   return (
     <LoaderContext.Provider value={{ setIsVisible, isVisible }}>
-      {isVisible && <Loader isVisible={isVisible} />}
+      {<Loader isVisible={isNavigating || isVisible} />}
       {children}
     </LoaderContext.Provider>
   );
