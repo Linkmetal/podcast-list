@@ -1,22 +1,17 @@
+import { Link } from "react-router-dom";
 import { Podcast } from "types/Podcast";
 import styles from "./PodcastCard.module.css";
-import { useNavigate } from "react-router-dom";
 
 type PodcastCardProps = {
   podcast: Podcast;
 };
 
 export const PodcastCard = ({ podcast }: PodcastCardProps) => {
-  const navigate = useNavigate();
-  const goToPodcastDetail = (id: string) => {
-    navigate(`/podcast/${id}`);
-  };
-
   return (
-    <div
-      onClick={() => goToPodcastDetail(podcast.id.attributes["im:id"])}
+    <Link
       className={styles.container}
       aria-label={`Navigate to ${podcast["im:name"].label}`}
+      to={`/podcast/${podcast.id.attributes["im:id"]}`}
     >
       <div className={styles.card}>
         <div className={styles.imageContainer}>
@@ -31,7 +26,7 @@ export const PodcastCard = ({ podcast }: PodcastCardProps) => {
           <span>{podcast["im:artist"].label}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
