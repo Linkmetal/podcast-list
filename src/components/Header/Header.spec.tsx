@@ -8,4 +8,10 @@ describe("Header", () => {
 
     expect(screen.getByText("Podcaster")).toBeInTheDocument();
   });
+
+  it("navigates to Home on click", () => {
+    render(<Header />);
+
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/");
+  });
 });

@@ -7,13 +7,6 @@ import { fireEvent, render, screen, waitFor } from "tests/app-test-utils";
 import { EpisodesList } from "./EpisodesList";
 import { PodcastFixture } from "tests/fixtures/Podcast";
 
-const mockNavigate = jest.fn();
-
-jest.mock("react-router-dom", () => ({
-  ...(jest.requireActual("react-router-dom") as any),
-  useNavigate: () => mockNavigate,
-}));
-
 describe("EpisodesList", () => {
   it("renders the podcast detail properly", () => {
     render(<EpisodesList podcastEpisodes={PodcastEpisodeListFixture} />);
@@ -26,7 +19,8 @@ describe("EpisodesList", () => {
     fireEvent.click(screen.getByText(PodcastEpisodeFixture.trackName));
 
     await waitFor(() => {
-      expect(mockNavigate).toHaveBeenCalledWith(
+      expect(screen.getByText(PodcastEpisodeFixture.trackName)).toHaveAttribute(
+        "href",
         `/podcast/${PodcastFixture.id.attributes["im:id"]}/episode/${PodcastEpisodeListFixture[0].trackId}`
       );
     });
